@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+
+<head>
+  <%- include('../common/head')%>
+</head>
+
+
+
+<body>
+
+  <!-- ===============================================-->
+  <!--    Főmenü -->
+  <!-- ===============================================-->
+  <main class="main" id="top">
+
+    <head>
+      <%- include('../common/header')%>
+    </head>
+
+
+
+    <!-- ===============================================-->
+    <!-- SZÖVEG / TARTALOM KIÍRÁSA -->
+    <!-- ===============================================-->
+    <section id="places">
+
+      <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">
+        6. CRUD menü: Az oldalon valósítson meg egy CRUD (Create, Read, Update, Delete)
+        alkalmazást a választott adatbázis egyik táblájához. (15 pont)
+        <br class="d-block d-lg-none d-xl-block" />
+        CRUD funkciók: tábla megjelenítése; új rekord felvitele; adott rekord módosítása;
+        adott rekord törlése.
+        Mintát a dokumentum végén talál.
+
+      </h1>
+
+    </section>
+
+    <!-- ============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!-- Foglalás -->
+    <!-- ===============================================-->
+    <section id="booking">
+      <div class="bg-holder"
+        style="background-image:url(assets/img//gallery/booking.png);background-position:center;background-size:cover;">
+      </div>
+      <!--/.bg-holder-->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12 py-8 text-white">
+            <div class="d-flex flex-column flex-center">
+              <h2 class="text-white fs-2 fs-md-3">WE WILL SEE YOU</h2>
+              <h1 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">Enjoy 30% Off On First Trip</h1>
+            </div>
+            <form class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
+              <div class="col-6 col-md-3">
+                <label class="visually-hidden" for="inlineFormSelectPref">Destinations</label>
+                <select class="form-select" id="inlineFormSelectPref">
+                  <option selected="">Destinations</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-6 col-md-3">
+                <label class="visually-hidden" for="autoSizingSelect">Package</label>
+                <select class="form-select" id="autoSizingSelect">
+                  <option selected="">Package</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-6 col-md-3">
+                <label class="visually-hidden" for="date">Date</label>
+                <div class="input-group">
+                  <input class="form-control" id="date" type="date" />
+                </div>
+              </div>
+              <div class="col-6 col-md-auto">
+                <button class="btn btn-lg btn-primary" type="submit">Book Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================-->
+
+
+    <footer>
+      <%- include('../common/footer')%>
+    </footer>
+
+
+  </main>
+
+  <%- include('../common/javascripts')%>
+
+</body>
+
+</html>

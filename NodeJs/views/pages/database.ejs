@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+
+<head>
+    <%- include('../common/head')%>
+</head>
+
+
+
+<body>
+
+    <!-- ===============================================-->
+    <!--    Főmenü -->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+        <head>
+            <%- include('../common/header')%>
+        </head>
+
+
+        <!-- ===============================================-->
+        <!-- Adatbázis kiíratása -->
+        <!-- ===============================================-->
+        <section id="szalloda-table">
+            <h3>Helység tábla adatai: </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>az</th>
+                        <th>nev</th>
+                        <th>helyseg_az</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% szalloda.forEach(function(row) { %>
+                        <tr>
+                            <td>
+                                <%= row.az %>
+                            </td>
+                            <td>
+                                <%= row.nev %>
+                            </td>
+                            <td>
+                                <%= row.helyseg_az %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </section>
+        <!-- NYELV tábla megjelenítése -->
+
+
+
+
+
+        </div>
+        </div>
+        <!-- ===============================================-->
+
+
+        <footer>
+            <%- include('../common/footer')%>
+        </footer>
+
+
+    </main>
+
+    <%- include('../common/javascripts')%>
+
+</body>
+
+</html>
