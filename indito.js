@@ -57,8 +57,10 @@ app.get('/oop', (req, res) => {
 
 
 
+// A szerver indítása helyi IP-n és egy szabad porton
+const port = 8010; // Választhatsz másik szabad portot is
+const serverIP = '10.0.0.253'; // A szerver helyi IP címe
 
-// Szerver indÃ­tÃ¡sa
-app.listen(4000, '0.0.0.0', () => {
-    console.log('Server is running on all available interfaces at port 4000');
+app.listen(port, serverIP, () => {
+    console.log(`The server is running at http://${serverIP}:${port}`);
 });
