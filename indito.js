@@ -3,21 +3,21 @@ const app = express();
 var path = require('path');
 const db = require('./adatbazis');
 
-// Sablonmotor beállítása
+// Sablonmotor beÃ¡llÃ­tÃ¡sa
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'NodeJs/views'));
 
-// Statikus fájlok kiszolgálása
+// Statikus fÃ¡jlok kiszolgÃ¡lÃ¡sa
 app.use(express.static(path.join(__dirname, 'NodeJs/public')));
 
-// Útvonalak
+// Ãštvonalak
 app.get('/', (req, res) => {
     res.render('pages/index');
     
 });
 
 app.get('/database', (req, res) => {
-    res.render("pages/database", {title: "database"});
+    res.render("pages/database", {title: "database page"});
 });
 
 app.get('/contact', (req, res) => {
@@ -36,19 +36,19 @@ app.get('/oop', (req, res) => {
     res.render('pages/oop');
 });
 
-  // Lekérdezés a nyelv táblából 10 rekordra limitálva.
-  app.get('/utazas', (req, res) => {
+  // LekÃ©rdezÃ©s a nyelv tÃ¡blÃ¡bÃ³l 10 rekordra limitÃ¡lva.
+  app.get('/db014', (req, res) => {
     const szallodaQuery = 'SELECT * FROM szalloda LIMIT 10';
     
   
-    // Több lekérdezés végrehajtása
+    // TÃ¶bb lekÃ©rdezÃ©s vÃ©grehajtÃ¡sa
     db.query(szallodaQuery, (err, szallodaResults) => {
       if (err) throw err;
   
     
   
-          // Továbbítjuk az adatokat az EJS fájlnak
-          res.render('utazas', {
+          // TovÃ¡bbÃ­tjuk az adatokat az EJS fÃ¡jlnak
+          res.render('database page', {
             szalloda: szallodaResults,
            
           });
@@ -57,9 +57,9 @@ app.get('/oop', (req, res) => {
 
 
 
-// A szerver ind�t�sa helyi IP-n �s egy szabad porton
-const port = 8010; // V�laszthatsz m�sik szabad portot is
-const serverIP = '10.0.0.253'; // A szerver helyi IP c�me
+// A szerver indítása helyi IP-n és egy szabad porton
+const port = 8010; // Választhatsz másik szabad portot is
+const serverIP = '10.0.0.253'; // A szerver helyi IP címe
 
 app.listen(port, serverIP, () => {
     console.log(`The server is running at http://${serverIP}:${port}`);
