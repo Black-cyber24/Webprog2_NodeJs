@@ -1,7 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 var path = require('path');
 const db = require('./adatbazis');
+
+
+// Alkalmazás beállításai
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Sablonmotor beÃ¡llÃ­tÃ¡sa
 app.set('view engine', 'ejs');
@@ -59,7 +65,7 @@ app.get('/oop', (req, res) => {
 
 // A szerver indítása helyi IP-n és egy szabad porton
 const port = 8010; // Választhatsz másik szabad portot is
-const serverIP = '10.0.0.253'; // A szerver helyi IP címe
+const serverIP = '127.0.0.1'; // A szerver helyi IP címe
 
 app.listen(port, serverIP, () => {
     console.log(`The server is running at http://${serverIP}:${port}`);

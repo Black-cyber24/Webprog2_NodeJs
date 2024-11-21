@@ -1,12 +1,14 @@
-const mysql = require('mysql2');
+var express=require("express")
+const mysql = require('mysql')
+var app=express();
 
 // MySQL kapcsolat létrehozása 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'studb010',
-    port: 8010,
+    host: '127.0.0.1',
+    user: 'root',
+    port: 3306,
     password: 'xyz456',
-    database: 'db010'
+    database: 'utazas'
   });
   
   db.connect((err) => {
