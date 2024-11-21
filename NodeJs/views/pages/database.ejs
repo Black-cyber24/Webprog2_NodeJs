@@ -34,19 +34,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% szalloda.forEach(function(row) { %>
-                        <tr>
-                            <td>
-                                <%= row.az %>
-                            </td>
-                            <td>
-                                <%= row.nev %>
-                            </td>
-                            <td>
-                                <%= row.helyseg_az %>
-                            </td>
-                        </tr>
-                        <% }) %>
+
+
+                   <ul>
+                     <% for(var i of szalloda) { %>
+                      <li><%= i.nev %></li>
+                      <% } %>
+                   </ul>
+
+                    
                 </tbody>
             </table>
         </section>
