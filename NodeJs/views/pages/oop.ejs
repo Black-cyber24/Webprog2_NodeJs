@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html lang="hu">
 
-
 <head>
-  <%- include('../common/head')%>
+  <%- include('../common/head') %>
 </head>
 
-
-
 <body>
-
   <!-- ===============================================-->
   <!--    Főmenü -->
   <!-- ===============================================-->
   <main class="main" id="top">
 
-
-    <head>
-      <%- include('../common/header')%>
-    </head>
-
-
+    <header>
+      <%- include('../common/header') %>
+    </header>
 
     <!-- ===============================================-->
     <!-- SZÖVEG / TARTALOM KIÍRÁSA -->
     <!-- ===============================================-->
     <div id="main">
       <div class="container">
-        <section id="places">
-          <header>
-            <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">
-              7. OOP-Javascript menü: Az oldalon készítsen egy kis alkalmazást,
-              amiben alkalmazza az objektum-orientált JavaScript elveit. (5 pont)<br>
-              <br class="d-block d-lg-none d-xl-block" /><br>
-              8. Alkalmazását töltse fel és valósítsa meg a megadott Linux-os tárhelyen.
-              (Kötelező elem! A működés ez alapján lesz javítva)
-            </h1>
-          </header>
+        <header class="major">
+          <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">
+            7. OOP-Javascript menü: Hozzon létre egy alkalmazást az OOP elveivel, amely az utazási csomagokat kezeli.
+          </h1>
+        </header>
+
+        <!-- OOP Alkalmazás -->
+        <section id="oop-app">
+          <form id="travelForm">
+            <input type="text" id="destination" placeholder="Úticél" required />
+            <input type="number" id="price" placeholder="Ár" required />
+            <input type="text" id="duration" placeholder="Időtartam (nap)" required />
+            <button type="submit">Csomag hozzáadása</button>
+          </form>
+
+          <section id="travelPackages">
+            <h2>Elérhető csomagok</h2>
+            <ul id="packageList"></ul>
+          </section>
         </section>
       </div>
     </div>
-    <!-- ============================================-->
 
-
+    <!-- ===============================================-->
+    <!-- Képek, Vélemények -->
+    <!-- ===============================================-->
+    <section class="pt-5">
+      <div class="container">
+        <div class="row flex-center mb-5">
+          <div class="col-lg-8 text-center">
+            <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">Traveller's Experiences</h1>
+            <hr class="mx-auto text-primary my-4" style="height:3px; width:70px;" />
+          </div>
+        </div>
+        <!-- Add carousel or similar section here if needed -->
+      </div>
+    </section>
 
     <footer>
-      <%- include('../common/footer')%>
+      <%- include('../common/footer') %>
     </footer>
-
-
-
   </main>
 
-  <%- include('../common/javascripts')%>
-
+  <%- include('../common/javascripts') %>
+  <script defer src="/assets/js/travel.js"></script> <!-- OOP JS fájl -->
 </body>
 
 </html>
