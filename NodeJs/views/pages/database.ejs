@@ -23,36 +23,75 @@
         <!-- ===============================================-->
         <!-- Adatbázis kiíratása -->
         <!-- ===============================================-->
-        <section id="szalloda-table">
-            <h3>Helység tábla adatai: </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>az</th>
-                        <th>nev</th>
-                        <th>helyseg_az</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div id="main">
+            <div class="container">
+                <header class="major">
+                    <h3>Adatbázis adatainak (táblák) kiíratása:</h3>
+                </header>
 
-
-                   <ul>
-                     <% for(var i of szalloda) { %>
-                      <li><%= i.nev %></li>
-                      <% } %>
-                   </ul>
-
-                    
-                </tbody>
-            </table>
-        </section>
-        <!-- NYELV tábla megjelenítése -->
-
-
-
-
-
-        </div>
+                <section id="szalloda">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Név</th>
+                                <th>Ország</th>
+                                <th>Felpanzio</th>
+                                <th>Helyseg</th>
+                                <th>Repter</th>
+                                <th>Tengerpart</th>
+                                <th>Ár</th>
+                                <th>Időtartam</th>
+                                <th>Indulás</th>
+                                <th>Sorszám</th>
+                                <th>Szálloda</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% szalloda.forEach(data=> { %>
+                                <tr>
+                                    <td>
+                                        <%= data.az %>
+                                    </td>
+                                    <td>
+                                        <%= data.nev %>
+                                    </td>
+                                    <td>
+                                        <%= data.orszag %>
+                                    </td>
+                                    <td>
+                                        <%= data.felpanzio %>
+                                    </td>
+                                    <td>
+                                        <%= data.helyseg_az %>
+                                    </td>
+                                    <td>
+                                        <%= data.repter_tav %>
+                                    </td>
+                                    <td>
+                                        <%= data.tengerpart_tav %>
+                                    </td>
+                                    <td>
+                                        <%= data.ar %>
+                                    </td>
+                                    <td>
+                                        <%= data.idotartam %>
+                                    </td>
+                                    <td>
+                                        <%= data.indulas.toLocaleString() %>
+                                    </td>
+                                    <td>
+                                        <%= data.sorszam %>
+                                    </td>
+                                    <td>
+                                        <%= data.szalloda_az %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </div>
         <!-- ===============================================-->
 

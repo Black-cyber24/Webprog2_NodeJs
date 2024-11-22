@@ -25,19 +25,54 @@
     <!-- ===============================================-->
     <!-- SZÖVEG / TARTALOM KIÍRÁSA -->
     <!-- ===============================================-->
-    <section id="places">
 
-      <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">
-        5. Üzenetek menü: Tegye lehetővé megtekinteni táblázatban az előző pontban
-        elküldött üzeneteket az adatbázisból fordított időrend szerint (a legfrissebb
-        legyen elől). Írja minden üzenethez a küldés idejét. (5 pont)
+    <div id="main">
+      <div class="container">
+        <header class="major">
 
-      </h1>
+          <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">5. Üzenetek menü: Tegye lehetővé megtekinteni táblázatban az előző
+            pontban
+            elküldött üzeneteket az adatbázisból fordított időrend szerint (a legfrissebb
+            legyen elől).<br> Írja minden üzenethez a küldés idejét. (5 pont) </h1>
 
-    </section>
 
-    <!-- ============================================-->
+        </header>
 
+        <!-- Content -->
+        <!--Üzenetek lekérdése és megjelenítése-->
+        <section id="uzenetek">
+          <table>
+            <thead>
+              <tr>
+                <th>Küldő</th>
+                <th>Email cím</th>
+                <th>Üzenet</th>
+                <th>Elküldés rögzítése: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% uzenetek.forEach(uzenet=> { %>
+                <tr>
+                  <td>
+                    <%= uzenet.nev %>
+                  </td>
+                  <td>
+                    <%= uzenet.email %>
+                  </td>
+                  <td>
+                    <%= uzenet.uzenet %>
+                  </td>
+                  <td>
+                    <%= uzenet.datum.toLocaleString() %>
+                  </td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+    </div>
 
 
 

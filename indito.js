@@ -1,38 +1,56 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-var path = require('path');
+const path = require('path');
 const db = require('./adatbazis');
+const bodyParser = require('body-parser');
 
 
-// Alkalmazás beállításai
+// Sablonmotor beállítása
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-// Sablonmotor beÃ¡llÃ­tÃ¡sa
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'NodeJs/views'));
+app.use(express.json());
 
-// Statikus fÃ¡jlok kiszolgÃ¡lÃ¡sa
+
+// Statikus fájlok kiszolgálása
 app.use(express.static(path.join(__dirname, 'NodeJs/public')));
 
-// Ãštvonalak
+
+// Útvonalak
 app.get('/', (req, res) => {
     res.render('pages/index');
-    
-});
-
-app.get('/database', (req, res) => {
-    res.render("pages/database", {title: "database page"});
 });
 
 app.get('/contact', (req, res) => {
-    res.render('pages/contact');
+  res.render('pages/contact');
 });
 
-app.get('/messages', (req, res) => {
-    res.render('pages/messages');
+
+// Adatbázis tartalmának kiíratása
+app.get('/database', (req, res) => {
+    const szallodaQuery = 'SELECT * FROM szalloda INNER JOIN helyseg ON szalloda.helyseg_az = helyseg.az INNER JOIN tavasz ON szalloda.helyseg_az = tavasz.sorszam LIMIT 10';
+
+    db.query(szallodaQuery, (err, szallodaResults) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Adatbázis hiba történt.');
+            return;
+        }
+
+        // Továbbítjuk az adatokat az EJS sablonnak
+        res.render('pages/database', {
+            title: 'Adatbázis',
+            szalloda: szallodaResults
+        });
+    });
 });
+
+
+
+
+
+
+
 
 app.get('/crud', (req, res) => {
     res.render('pages/crud');
@@ -42,31 +60,64 @@ app.get('/oop', (req, res) => {
     res.render('pages/oop');
 });
 
-  // LekÃ©rdezÃ©s a nyelv tÃ¡blÃ¡bÃ³l 10 rekordra limitÃ¡lva.
-  app.get('/db014', (req, res) => {
-    const szallodaQuery = 'SELECT * FROM szalloda LIMIT 10';
-    
+
+
+
+
+  // Adatbázisból az üzenetek kiíratása csökkenő sorrendben
+  app.get('/messages', (req, res) => {
+    const sql = 'SELECT * FROM `uzenetek` ORDER BY datum DESC';
+
+    db.query(sql, (err, results) => {
+      if (err) {
+        console.error(err);
+            res.status(500).send('Adatbázis hiba történt.');
+            return;
+      }
+      
+      // Továbbítjuk az adatokat az EJS sablonnak
+      res.render('pages/messages', {
+        title: 'Üzenetek', 
+        uzenetek: results
+       }); 
+    });
+  });
   
-    // TÃ¶bb lekÃ©rdezÃ©s vÃ©grehajtÃ¡sa
-    db.query(szallodaQuery, (err, szallodaResults) => {
-      if (err) throw err;
+
+
+  // Üzenetek importálása az adatbázisba
+  app.post('/upload_message', (req, res) => {
+    const { name, email, message } = req.body;
   
-    
+    const sql = 'INSERT INTO uzenetek (nev, email, uzenet) VALUES (?, ?, ?)';
+    db.query(sql, [name, email, message], (err, result) => {
+        if (err) {
+          console.error(err);
+            res.status(500).send('Feltöltési hiba történt.');
+            return;
+        }
   
-          // TovÃ¡bbÃ­tjuk az adatokat az EJS fÃ¡jlnak
-          res.render('database page', {
-            szalloda: szallodaResults,
-           
-          });
-        });
-      });
+        console.log('Message sent:', result);
+        res.redirect('/messages');
+    });
+  });
 
 
 
-// A szerver indítása helyi IP-n és egy szabad porton
-const port = 8010; // Választhatsz másik szabad portot is
-const serverIP = '127.0.0.1'; // A szerver helyi IP címe
+// A szerver ind�t�sa helyi IP-n �s egy szabad porton
+//const port = 8014; // V�laszthatsz m�sik szabad portot is
+//const serverIP = '10.0.0.253'; // A szerver helyi IP c�me
 
-app.listen(port, serverIP, () => {
-    console.log(`The server is running at http://${serverIP}:${port}`);
+//app.listen(port, serverIP, () => {
+//    console.log(`The server is running at http://${serverIP}:${port}`);
+//});
+
+// Szerver indítása
+app.listen(4000, () => {
+  var date = new Date();
+  console.log(date);
+  console.log('The server runs at port: 4000');
+  console.log('http://localhost:4000');
+  
+  
 });

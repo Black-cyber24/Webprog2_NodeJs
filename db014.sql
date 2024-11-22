@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 18. 12:07
+-- Gép: localhost
+-- Létrehozás ideje: 2024. Nov 20. 18:54
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `utazas`
+-- Adatbázis: `studb014`
 --
 
 -- --------------------------------------------------------
