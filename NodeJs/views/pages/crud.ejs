@@ -1,114 +1,57 @@
 <!DOCTYPE html>
 <html lang="hu">
 
-
 <head>
-  <%- include('../common/head')%>
+    <%- include('../common/head') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Műveletek</title>
 </head>
-
-
 
 <body>
 
-  <!-- ===============================================-->
-  <!--    Főmenü -->
-  <!-- ===============================================-->
-  <main class="main" id="top">
+  <h1>CRUD Műveletek - Helység Tábla</h1>
+    
+  <!-- Új rekord hozzáadása -->
+  <h2>Új Helység Hozzáadása</h2>
+  <form action="/crud/add" method="POST">
+      <label for="nev">Helység neve:</label>
+      <input type="text" id="nev" name="nev" required>
+      <label for="orszag">Ország:</label>
+      <input type="text" id="orszag" name="orszag" required>
+      <button type="submit">Hozzáadás</button>
+  </form>
 
-    <head>
-      <%- include('../common/header')%>
-    </head>
-
-
-
-    <!-- ===============================================-->
-    <!-- SZÖVEG / TARTALOM KIÍRÁSA -->
-    <!-- ===============================================-->
-    <div id="main">
-      <div class="container">
-        <section id="places">
-          <header>
-            <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">
-              6. CRUD menü: Az oldalon valósítson meg egy CRUD (Create, Read, Update, Delete)
-              alkalmazást a választott adatbázis egyik táblájához. (15 pont)<br>
-              <br>
-              CRUD funkciók: tábla megjelenítése; új rekord felvitele; adott rekord módosítása;
-              adott rekord törlése.<br>
-              <br>
-              Mintát a dokumentum végén talál.
-            </h1>
-          </header>
-        </section>
-      </div>
-    </div>
-
-    <!-- ============================================-->
-
-
-
-
-    <!-- ===============================================-->
-    <!-- Foglalás -->
-    <!-- ===============================================-->
-    <section id="booking">
-      <div class="bg-holder"
-        style="background-image:url(assets/img//gallery/booking.png);background-position:center;background-size:cover;">
-      </div>
-      <!--/.bg-holder-->
-
-      <div class="container">
-        <div class="row">
-          <div class="col-12 py-8 text-white">
-            <div class="d-flex flex-column flex-center">
-              <h2 class="text-white fs-2 fs-md-3">WE WILL SEE YOU</h2>
-              <h1 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">Enjoy 30% Off On First Trip</h1>
-            </div>
-            <form class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
-              <div class="col-6 col-md-3">
-                <label class="visually-hidden" for="inlineFormSelectPref">Destinations</label>
-                <select class="form-select" id="inlineFormSelectPref">
-                  <option selected="">Destinations</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-6 col-md-3">
-                <label class="visually-hidden" for="autoSizingSelect">Package</label>
-                <select class="form-select" id="autoSizingSelect">
-                  <option selected="">Package</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-6 col-md-3">
-                <label class="visually-hidden" for="date">Date</label>
-                <div class="input-group">
-                  <input class="form-control" id="date" type="date" />
-                </div>
-              </div>
-              <div class="col-6 col-md-auto">
-                <button class="btn btn-lg btn-primary" type="submit">Book Now</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================-->
-
-
-    <footer>
-      <%- include('../common/footer')%>
-    </footer>
-
-
-  </main>
-
-  <%- include('../common/javascripts')%>
-
+  <!-- Rekordok listázása -->
+  <h2>Helységek Listája</h2>
+  <table border="1">
+      <thead>
+          <tr>
+              <th>Azonosító</th>
+              <th>Név</th>
+              <th>Ország</th>
+              <th>Műveletek</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% helyseg_lista.forEach(helyseg => { %>
+          <tr>
+              <td><%= helyseg.az %></td>
+              <td><%= helyseg.nev %></td>
+              <td><%= helyseg.orszag %></td>
+              <td>
+                  <!-- Módosítás -->
+                  <form action="/crud/update/<%= helyseg.az %>" method="POST" style="display:inline;">
+                      <input type="text" name="nev" value="<%= helyseg.nev %>" required>
+                      <input type="text" name="orszag" value="<%= helyseg.orszag %>" required>
+                      <button type="submit">Módosítás</button>
+                  </form>
+                  <!-- Törlés -->
+                  <a href="/crud/delete/<%= helyseg.az %>">Törlés</a>
+              </td>
+          </tr>
+          <% }); %>
+      </tbody>
+  </table>
 </body>
-
 </html>

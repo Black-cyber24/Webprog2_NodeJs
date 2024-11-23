@@ -47,11 +47,6 @@ app.get('/database', (req, res) => {
 
 
 
-
-
-
-
-
 app.get('/crud', (req, res) => {
     res.render('pages/crud');
 });
@@ -103,6 +98,65 @@ app.get('/oop', (req, res) => {
   });
 
 
+// CRUD Útvonalak
+// Adatok listázása (Read)
+app.get('/crud', (req, res) => {
+  const query = 'SELECT * FROM helyseg'; // Adatbázis lekérdezés
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Adatbázis hiba történt:', err);
+          res.status(500).send('Hiba történt az adatok lekérdezésekor.');
+          return;
+      }
+      // Az EJS sablon számára az adatok átadása
+      res.render('pages/crud', { helyseg_lista: results });
+  });
+});
+
+// Új rekord hozzáadása (Create)
+app.post('/crud/add', (req, res) => {
+  const { nev, orszag } = req.body;
+  const query = 'INSERT INTO helyseg (nev, orszag) VALUES (?, ?)';
+  db.query(query, [nev, orszag], (err) => {
+      if (err) {
+          console.error('Hiba az új rekord hozzáadásakor:', err);
+          res.status(500).send('Rekord hozzáadási hiba.');
+          return;
+      }
+      res.redirect('/crud');
+  });
+});
+
+// Rekord módosítása (Update)
+app.post('/crud/update/:az', (req, res) => {
+  const { az } = req.params;
+  const { nev, orszag } = req.body;
+  const query = 'UPDATE helyseg SET nev = ?, orszag = ? WHERE az = ?';
+  db.query(query, [nev, orszag, az], (err) => {
+      if (err) {
+          console.error('Hiba a rekord módosításakor:', err);
+          res.status(500).send('Rekord módosítási hiba.');
+          return;
+      }
+      res.redirect('/crud');
+  });
+});
+
+// Rekord törlése (Delete)
+app.get('/crud/delete/:az', (req, res) => {
+  const { az } = req.params;
+  const query = 'DELETE FROM helyseg WHERE az = ?';
+  db.query(query, [az], (err) => {
+      if (err) {
+          console.error('Hiba a rekord törlésekor:', err);
+          res.status(500).send('Rekord törlési hiba.');
+          return;
+      }
+      res.redirect('/crud');
+  });
+});
+
+
 
 // A szerver ind�t�sa helyi IP-n �s egy szabad porton
 //const port = 8014; // V�laszthatsz m�sik szabad portot is
@@ -121,3 +175,4 @@ app.listen(4000, () => {
   
   
 });
+

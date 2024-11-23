@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2024. Nov 20. 18:54
+-- Létrehozás ideje: 2024. Nov 23. 08:44
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -1464,6 +1464,30 @@ INSERT INTO `tavasz` (`szalloda_az`, `indulas`, `idotartam`, `ar`, `sorszam`) VA
 ('TA', '2011-04-20', 8, 125900, 1421),
 ('TA', '2011-04-20', 15, 200900, 1422),
 ('TA', '2011-04-27', 8, 125900, 1423);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `uzenetek`
+--
+
+CREATE TABLE `uzenetek` (
+  `nev` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `uzenet` text NOT NULL,
+  `datum` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `uzenetek`
+--
+
+INSERT INTO `uzenetek` (`nev`, `email`, `uzenet`, `datum`) VALUES
+('Proba_1', 'proba@mail.hu', 'proba', '2024-11-22 00:00:00'),
+('Proba_2', 'proba2@mail.hu', 'Hey!', '2024-11-22 00:00:00'),
+('Proba_3', 'proba3@mail.hu', 'Hoho ho!', '2024-11-22 00:00:00'),
+('Proba_5', 'proba5@mail.hu', 'Hihi!', '2024-11-22 18:35:00'),
+('Proba', 'proba@mail.hu', 'Hi!', '2024-11-22 18:46:11');
 
 --
 -- Indexek a kiírt táblákhoz
