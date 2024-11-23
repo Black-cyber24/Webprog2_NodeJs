@@ -7,9 +7,12 @@ const bodyParser = require('body-parser');
 
 // Sablonmotor beállítása
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'NodeJs/views'));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/assets', express.static(path.join(__dirname, 'NodeJs/public/assets')));
 
 
 // Statikus fájlok kiszolgálása
@@ -46,17 +49,9 @@ app.get('/database', (req, res) => {
 });
 
 
-
-app.get('/crud', (req, res) => {
-    res.render('pages/crud');
-});
-
 app.get('/oop', (req, res) => {
     res.render('pages/oop');
 });
-
-
-
 
 
   // Adatbázisból az üzenetek kiíratása csökkenő sorrendben
@@ -113,19 +108,32 @@ app.get('/crud', (req, res) => {
   });
 });
 
-// Új rekord hozzáadása (Create)
-app.post('/crud/add', (req, res) => {
-  const { nev, orszag } = req.body;
-  const query = 'INSERT INTO helyseg (nev, orszag) VALUES (?, ?)';
-  db.query(query, [nev, orszag], (err) => {
-      if (err) {
-          console.error('Hiba az új rekord hozzáadásakor:', err);
-          res.status(500).send('Rekord hozzáadási hiba.');
-          return;
+app.post('/crud/add', async (req, res) => {
+  try {
+      const { nev, orszag } = req.body;
+
+      // Ellenőrizd, hogy az összes mező ki van-e töltve
+      if (!nev || !orszag) {
+          return res.status(400).send('Minden mezőt ki kell tölteni!');
       }
-      res.redirect('/crud');
-  });
+
+      // Új rekord hozzáadása az adatbázishoz
+      const query = 'INSERT INTO helyseg (nev, orszag) VALUES (?, ?)';
+      db.query(query, [nev, orszag], (err, results) => {
+          if (err) {
+              console.error('Hiba az új rekord hozzáadásakor:', err.message);
+              return res.status(500).send('Rekord hozzáadási hiba.');
+          }
+          res.redirect('/crud'); // Sikeres hozzáadás esetén irányítás
+      });
+  } catch (err) {
+      console.error('Váratlan hiba történt:', err.message);
+      res.status(500).send('Váratlan hiba történt.');
+  }
 });
+
+
+
 
 // Rekord módosítása (Update)
 app.post('/crud/update/:az', (req, res) => {
