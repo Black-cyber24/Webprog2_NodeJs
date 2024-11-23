@@ -1,0 +1,144 @@
+/* Formázás alapstílusok */
+form {
+    max-width: 600px; /* Az űrlap szélessége */
+    margin: 20px auto; /* Középre igazítás */
+    padding: 20px;
+    background-color: #f9f9f9; /* Világos háttérszín */
+    border: 1px solid #ddd; /* Halvány szegély */
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
+    display: flex;
+    gap: 10px; /* Távolság az inputok között */
+    flex-wrap: wrap; /* Kis képernyőn az elemek sorba törése */
+}
+
+/* Űrlap mezők (input) */
+form input[type="text"],
+form input[type="number"] {
+    flex: 1; /* Rugalmas szélesség */
+    min-width: 150px; /* Minimum szélesség */
+    padding: 10px;
+    border: 1px solid #ddd; /* Halvány szegély */
+    border-radius: 4px; /* Lekerekített sarkok */
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Fókusz állapot */
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+    border-color: #007bff; /* Kék szegély fókuszkor */
+    outline: none; /* Alapértelmezett outline eltávolítása */
+    box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.3); /* Kék árnyék fókuszkor */
+}
+
+/* Küldés gomb */
+form button[type="submit"] {
+    padding: 10px 15px;
+    background-color: #007bff; /* Gomb színe */
+    color: white; /* Fehér szöveg */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Simább hover effekt */
+    flex-shrink: 0; /* A gomb ne zsugorodjon */
+}
+
+/* Hover effekt a gombon */
+form button[type="submit"]:hover {
+    background-color: #0056b3; /* Sötétebb kék hoverkor */
+}
+
+/* Placeholder szöveg */
+form input::placeholder {
+    color: #aaa; /* Halvány placeholder szöveg */
+    font-style: italic;
+}
+
+/* Címek stílusa */
+h2, h3 {
+    text-align: center;
+    margin-top: 20px;
+    color: #2c3e50; /* Sötét szövegszín */
+}
+/* Alap beállítások a listához */
+#travelPackages {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Világos háttér */
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Árnyék */
+}
+
+/* Lista cím */
+#travelPackages h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Sötét szöveg */
+    font-size: 1.8em;
+}
+
+/* Lista elemek */
+#packageList {
+    list-style: none; /* Alapértelmezett pontok eltávolítása */
+    padding: 0;
+    margin: 0;
+}
+
+#packageList li {
+    display: flex;
+    align-items: center; /* Gomb és szöveg középre igazítása függőlegesen */
+    justify-content: space-between; /* Szöveg és gomb közötti távolság */
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff; /* Fehér háttér */
+    border: 1px solid #ddd; /* Halvány szegély */
+    border-radius: 5px; /* Lekerekített sarkok */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Finom árnyék */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover animáció */
+}
+
+/* Hover effekt a listaelemeken */
+#packageList li:hover {
+    transform: scale(1.02); /* Enyhe nagyítás */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Erősebb árnyék */
+}
+
+/* Listaelem szöveg */
+#packageList li span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px; /* Távolság a szöveg és gomb között */
+}
+
+/* Törlés gomb */
+#packageList li button {
+    padding: 5px 10px;
+    background-color: #ff4d4f; /* Piros gomb szín */
+    color: white; /* Fehér szöveg */
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hover animáció */
+}
+
+/* Hover effekt a törlés gombon */
+#packageList li button:hover {
+    background-color: #d93639; /* Sötétebb piros hoverkor */
+}
+
+/* Reszponzív stílus kisebb képernyőkre */
+@media (max-width: 768px) {
+    #packageList li {
+        flex-direction: column; /* Elemek egymás alá kerülnek */
+        align-items: flex-start;
+    }
+
+    #packageList li button {
+        margin-top: 10px; /* Törlés gomb távolsága a szövegtől */
+    }
+}

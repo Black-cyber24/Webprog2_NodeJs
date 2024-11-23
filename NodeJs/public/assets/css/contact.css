@@ -1,0 +1,66 @@
+/* Formázás alapstílusok */
+form {
+    max-width: 400px; /* Az űrlap szélessége */
+    margin: 20px auto; /* Középre igazítás */
+    padding: 20px;
+    background-color: #f9f9f9; /* Világos háttérszín */
+    border: 1px solid #ddd; /* Halvány szegély */
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Árnyék */
+}
+
+/* Űrlap cím */
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Sötét szövegszín */
+}
+
+/* Input és textarea mezők */
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%; /* Teljes szélesség */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Halvány szegély */
+    border-radius: 4px; /* Lekerekített sarkok */
+    box-sizing: border-box; /* A padding beleszámít a szélességbe */
+    font-size: 16px; /* Kényelmes betűméret */
+    font-family: Arial, sans-serif;
+}
+
+/* Fókusz állapot */
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: #007bff; /* Kék szegély fókuszkor */
+    outline: none; /* Alapértelmezett outline eltávolítása */
+    box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.3); /* Kék árnyék fókuszkor */
+}
+
+/* Küldés gomb */
+form button[type="submit"] {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #007bff; /* Gomb színe */
+    color: white; /* Fehér szöveg */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Simább hover effekt */
+}
+
+/* Hover effekt a gombon */
+form button[type="submit"]:hover {
+    background-color: #0056b3; /* Sötétebb kék hoverkor */
+}
+
+/* Placeholder szöveg */
+form input::placeholder,
+form textarea::placeholder {
+    color: #aaa; /* Halvány placeholder szöveg */
+    font-style: italic;
+}
