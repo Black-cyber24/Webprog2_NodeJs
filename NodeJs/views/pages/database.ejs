@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="hu">
 
-
 <head>
-    <%- include('../common/head')%>
+    <%- include('../common/head') %>
+    <link rel="stylesheet" href="/assets/css/database.css?v=1.0">
+ 
 </head>
 
-
-
 <body>
-
-    <!-- ===============================================-->
-    <!--    Főmenü -->
-    <!-- ===============================================-->
     <main class="main" id="top">
+        <header>
+            <%- include('../common/header') %>
+        </header>
 
-        <head>
-            <%- include('../common/header')%>
-        </head>
-
-
-        <!-- ===============================================-->
-        <!-- Adatbázis kiíratása -->
-        <!-- ===============================================-->
         <div id="main">
             <div class="container">
                 <header class="major">
-                    <h3>Adatbázis adatainak (táblák) kiíratása:</h3>
+                    <h3>Elérhető utazások részletes listája</h3>
+                    <p>Fedezd fel elérhető úti céljainkat az alábbi táblázatban! Itt találhatók a legfontosabb adatok: az úti cél, az ország, az ár, a szállás típusa, a reptér távolsága, és az indulási időpont. Böngészd át ajánlatainkat, és találd meg a számodra legmegfelelőbb utazást!</p>
                 </header>
 
                 <section id="szalloda">
@@ -48,63 +39,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% szalloda.forEach(data=> { %>
+                            <% szalloda.forEach(data => { %>
                                 <tr>
-                                    <td>
-                                        <%= data.az %>
-                                    </td>
-                                    <td>
-                                        <%= data.nev %>
-                                    </td>
-                                    <td>
-                                        <%= data.orszag %>
-                                    </td>
-                                    <td>
-                                        <%= data.felpanzio %>
-                                    </td>
-                                    <td>
-                                        <%= data.helyseg_az %>
-                                    </td>
-                                    <td>
-                                        <%= data.repter_tav %>
-                                    </td>
-                                    <td>
-                                        <%= data.tengerpart_tav %>
-                                    </td>
-                                    <td>
-                                        <%= data.ar %>
-                                    </td>
-                                    <td>
-                                        <%= data.idotartam %>
-                                    </td>
-                                    <td>
-                                        <%= data.indulas.toLocaleString() %>
-                                    </td>
-                                    <td>
-                                        <%= data.sorszam %>
-                                    </td>
-                                    <td>
-                                        <%= data.szalloda_az %>
-                                    </td>
+                                    <td><%= data.az %></td>
+                                    <td><%= data.nev %></td>
+                                    <td><%= data.orszag %></td>
+                                    <td><%= data.felpanzio %></td>
+                                    <td><%= data.helyseg_az %></td>
+                                    <td><%= data.repter_tav %></td>
+                                    <td><%= data.tengerpart_tav %></td>
+                                    <td><%= data.ar %></td>
+                                    <td><%= data.idotartam %></td>
+                                    <td><%= data.indulas.toLocaleString() %></td>
+                                    <td><%= data.sorszam %></td>
+                                    <td><%= data.szalloda_az %></td>
                                 </tr>
-                                <% }); %>
+                            <% }); %>
                         </tbody>
                     </table>
                 </section>
             </div>
         </div>
-        <!-- ===============================================-->
-
 
         <footer>
-            <%- include('../common/footer')%>
+            <%- include('../common/footer') %>
         </footer>
-
-
     </main>
 
-    <%- include('../common/javascripts')%>
-
+    <%- include('../common/javascripts') %>
 </body>
 
 </html>

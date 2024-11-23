@@ -2,56 +2,92 @@
 <html lang="hu">
 
 <head>
-    <%- include('../common/head') %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Műveletek</title>
+  <%- include('../common/head') %>
+  <link rel="stylesheet" href="/assets/css/crud.css?v=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Műveletek</title>
+  
 </head>
 
 <body>
+  <!-- ===============================================-->
+  <!--    Főmenü -->
+  <!-- ===============================================-->
+  <main class="main" id="top">
 
-  <h1>CRUD Műveletek - Helység Tábla</h1>
-    
-  <!-- Új rekord hozzáadása -->
-  <h2>Új Helység Hozzáadása</h2>
-  <form action="/crud/add" method="POST">
-      <label for="nev">Helység neve:</label>
-      <input type="text" id="nev" name="nev" required>
-      <label for="orszag">Ország:</label>
-      <input type="text" id="orszag" name="orszag" required>
-      <button type="submit">Hozzáadás</button>
-  </form>
+    <header>
+      <%- include('../common/header') %>
+    </header>
 
-  <!-- Rekordok listázása -->
-  <h2>Helységek Listája</h2>
-  <table border="1">
-      <thead>
-          <tr>
+    <!-- ===============================================-->
+    <!-- CRUD Tartalom -->
+    <!-- ===============================================-->
+    <div id="main" class="container text-center">
+      <header class="major my-5">
+        <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">CRUD Műveletek - Helység Tábla</h1>
+      </header>
+
+      <!-- Új rekord hozzáadása -->
+      <section id="addRecord" class="mb-5">
+        <h2 class="fw-bold fs-md-2 fs-lg-3">Új Helység Hozzáadása</h2>
+<form action="/crud/add" method="POST">
+    <label for="nev">Helység neve:</label>
+    <input type="text" id="nev" name="nev" required>
+    <label for="orszag">Ország:</label>
+    <input type="text" id="orszag" name="orszag" required>
+    <button type="submit">Hozzáadás</button>
+</form>
+
+      </section>
+
+      <!-- Rekordok listázása -->
+      <section id="crudTable">
+        <h2 class="fw-bold fs-md-2 fs-lg-3">Helységek Listája</h2>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
               <th>Azonosító</th>
               <th>Név</th>
               <th>Ország</th>
               <th>Műveletek</th>
-          </tr>
-      </thead>
-      <tbody>
-          <% helyseg_lista.forEach(helyseg => { %>
-          <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (helyseg_lista && helyseg_lista.length > 0) { %>
+            <% helyseg_lista.forEach(helyseg => { %>
+            <tr>
               <td><%= helyseg.az %></td>
               <td><%= helyseg.nev %></td>
               <td><%= helyseg.orszag %></td>
               <td>
-                  <!-- Módosítás -->
-                  <form action="/crud/update/<%= helyseg.az %>" method="POST" style="display:inline;">
-                      <input type="text" name="nev" value="<%= helyseg.nev %>" required>
-                      <input type="text" name="orszag" value="<%= helyseg.orszag %>" required>
-                      <button type="submit">Módosítás</button>
-                  </form>
-                  <!-- Törlés -->
-                  <a href="/crud/delete/<%= helyseg.az %>">Törlés</a>
+                <!-- Módosítás -->
+                <form action="/crud/update/<%= helyseg.az %>" method="POST" style="display:inline;">
+                  <input type="text" name="nev" value="<%= helyseg.nev %>" required>
+                  <input type="text" name="orszag" value="<%= helyseg.orszag %>" required>
+                  <button type="submit" class="btn btn-warning btn-sm">Módosítás</button>
+                </form>
+                <!-- Törlés -->
+                <a href="/crud/delete/<%= helyseg.az %>" class="btn btn-danger btn-sm">Törlés</a>
               </td>
-          </tr>
-          <% }); %>
-      </tbody>
-  </table>
+            </tr>
+            <% }); %>
+            <% } else { %>
+            <tr>
+              <td colspan="4" class="text-center">Nincs elérhető hely.</td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <footer>
+      <%- include('../common/footer') %>
+    </footer>
+  </main>
+
+  <%- include('../common/javascripts') %>
 </body>
+
 </html>
