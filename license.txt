@@ -1,0 +1,11 @@
+Ez a projekt kizárólag egy iskolai beadandó végett jött létre, amely során az alábbi linken feltűntetett források és hozzátartozó license -k kerültek felhasználásra:
+
+
+## Rhea a theme by ThemeWagon team:
+Rhea – Free Bootstrap 5 HTML5 Traveling Landing Page Template
+
+https://themewagon.com/?s=Rhea&post_type=product
+https://themewagon.com/license/
+
+
+
